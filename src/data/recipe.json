@@ -1,0 +1,167 @@
+[
+  {
+    "id": 1,
+    "name": "Macarrão Simples",
+    "description": "Macarrão rápido com sal",
+    "ingredients": ["macarrão", "água", "sal"],
+    "instructions": ["ferver água", "cozinhar macarrão", "escorrer e servir"],
+    "price": 8,
+    "category": "refeição",
+    "image": "../assets/image/image.png",
+    "video": "../assets/image/video.png"
+  },
+  {
+    "id": 2,
+    "name": "Miojo",
+    "description": "Macarrão instantâneo rápido",
+    "ingredients": ["miojo", "água", "tempero pronto"],
+    "instructions": ["ferver água", "adicionar miojo", "misturar tempero"],
+    "price": 5,
+    "category": "instantânea",
+    "image": "../assets/image/image.png",
+    "video": "../assets/image/video.png"
+  },
+  {
+    "id": 3,
+    "name": "Ovo Mexido",
+    "description": "Ovos mexidos simples",
+    "ingredients": ["ovo", "sal", "óleo"],
+    "instructions": ["quebrar ovos", "mexer na panela", "servir"],
+    "price": 6,
+    "category": "refeição",
+    "image": "../assets/image/image.png",
+    "video": "../assets/image/video.png"
+  },
+  {
+    "id": 4,
+    "name": "Sanduíche",
+    "description": "Pão com queijo e presunto",
+    "ingredients": ["pão", "queijo", "presunto"],
+    "instructions": ["montar sanduíche", "servir"],
+    "price": 7,
+    "category": "lanche",
+    "image": "../assets/image/image.png",
+    "video": "../assets/image/video.png"
+  },
+  {
+    "id": 5,
+    "name": "Cuscuz",
+    "description": "Cuscuz simples no vapor",
+    "ingredients": ["flocão", "água", "sal"],
+    "instructions": ["hidratar flocão", "cozinhar no vapor", "servir"],
+    "price": 4,
+    "category": "refeição",
+    "image": "../assets/image/image.png",
+    "video": "../assets/image/video.png"
+  },
+  {
+    "id": 6,
+    "name": "Pipoca",
+    "description": "Pipoca feita na panela",
+    "ingredients": ["milho", "óleo", "sal"],
+    "instructions": ["aquecer óleo", "estourar milho", "temperar"],
+    "price": 3,
+    "category": "lanche",
+    "image": "../assets/image/image.png",
+    "video": "../assets/image/video.png"
+  },
+  {
+    "id": 7,
+    "name": "Tapioca",
+    "description": "Tapioca simples",
+    "ingredients": ["goma de tapioca", "sal"],
+    "instructions": ["aquecer frigideira", "espalhar goma", "servir"],
+    "price": 6,
+    "category": "refeição",
+    "image": "../assets/image/image.png",
+    "video": "../assets/image/video.png"
+  },
+  {
+    "id": 8,
+    "name": "Arroz Simples",
+    "description": "Arroz branco básico",
+    "ingredients": ["arroz", "água", "sal"],
+    "instructions": ["lavar arroz", "cozinhar", "servir"],
+    "price": 5,
+    "category": "refeição",
+    "image": "../assets/image/image.png",
+    "video": "../assets/image/video.png"
+  },
+  {
+    "id": 9,
+    "name": "Pão com Ovo",
+    "description": "Sanduíche simples com ovo frito",
+    "ingredients": ["pão", "ovo", "sal"],
+    "instructions": ["fritar ovo", "colocar no pão", "servir"],
+    "price": 6,
+    "category": "lanche",
+    "image": "../assets/image/image.png",
+    "video": "../assets/image/video.png"
+  },
+  {
+    "id": 10,
+    "name": "Batata Frita",
+    "description": "Batata frita crocante",
+    "ingredients": ["batata", "óleo", "sal"],
+    "instructions": ["cortar batata", "fritar", "temperar"],
+    "price": 7,
+    "category": "lanche",
+    "image": "../assets/image/image.png",
+    "video": "../assets/image/video.png"
+  },
+  {
+    "id": 11,
+    "name": "Queijo Quente",
+    "description": "Pão com queijo derretido",
+    "ingredients": ["pão", "queijo", "manteiga"],
+    "instructions": ["montar pão", "levar à frigideira", "servir"],
+    "price": 6,
+    "category": "lanche",
+    "image": "../assets/image/image.png",
+    "video": "../assets/image/video.png"
+  },
+  {
+    "id": 12,
+    "name": "Café com Leite",
+    "description": "Bebida simples e rápida",
+    "ingredients": ["café", "leite", "açúcar"],
+    "instructions": ["preparar café", "misturar leite", "adoçar"],
+    "price": 4,
+    "category": "bebida",
+    "image": "../assets/image/image.png",
+    "video": "../assets/image/video.png"
+  },
+  {
+    "id": 13,
+    "name": "Vitamina de Banana",
+    "description": "Bebida nutritiva e rápida",
+    "ingredients": ["banana", "leite", "açúcar"],
+    "instructions": ["bater tudo no liquidificador", "servir"],
+    "price": 5,
+    "category": "bebida",
+    "image": "../assets/image/image.png",
+    "video": "../assets/image/video.png"
+  },
+  {
+    "id": 14,
+    "name": "Biscoito com Manteiga",
+    "description": "Lanche simples e barato",
+    "ingredients": ["biscoito", "manteiga"],
+    "instructions": ["passar manteiga", "servir"],
+    "price": 3,
+    "category": "lanche",
+    "image": "../assets/image/image.png",
+    "video": "../assets/image/video.png"
+  },
+  {
+    "id": 15,
+    "name": "Cachorro-Quente Simples",
+    "description": "Pão com salsicha",
+    "ingredients": ["pão", "salsicha", "molho"],
+    "instructions": ["cozinhar salsicha", "montar no pão", "servir"],
+    "price": 8,
+    "category": "lanche",
+    "image": "../assets/image/image.png",
+    "video": "../assets/image/video.png"
+  }
+]
