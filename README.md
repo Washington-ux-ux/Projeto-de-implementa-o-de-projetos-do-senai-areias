@@ -19,6 +19,6 @@ A criação de um site com receitas fáceis, baratas e nutritivas para ajudar pe
 - Visualização e modo de preparos
 - Filtro de ingredientes
 - Estimação de preço
-- O frontend será feito com html/css
+- O frontend será feito com html/css (feito com ia (único))
 - O backend será feito com Node.js
 

@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receitas Online</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .login-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Filter Dropdown */
+        .filter-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            margin-top: 80px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .filter-container.hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+        }
+
+        .filter-dropdown {
+            position: relative;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            min-width: 250px;
+        }
+
+        .filter-button {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1rem;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .filter-button:hover {
+            background: #f8f9fa;
+        }
+
+        .filter-arrow {
+            transition: transform 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .filter-arrow.open {
+            transform: rotate(180deg);
+        }
+
+        .filter-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .filter-options.open {
+            max-height: 300px;
+            opacity: 1;
+            overflow-y: auto;
+        }
+
+        .filter-option {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .filter-option:last-child {
+            border-bottom: none;
+        }
+
+        .filter-option:hover {
+            background: #f8f9fa;
+        }
+
+        .filter-option.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #f0f0f0;
+        }
+
+        .video-info {
+            padding: 1rem;
+        }
+
+        .video-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .video-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-price {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .toggle-form {
+            text-align: center;
+            margin-top: 1rem;
+            color: #666;
+        }
+
+        .toggle-form a {
+            color: #667eea;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Video Detail View */
+        .video-detail {
+            display: none;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .video-detail.active {
+            display: grid;
+        }
+
+        .video-player {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-video {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .recipe-info {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .recipe-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .recipe-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .recipe-section h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .ingredient-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ingredient-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .ingredient-list li:before {
+            content: "• ";
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .instruction-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .instruction-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .instruction-list li:before {
+            content: counter(step) ". ";
+            counter-increment: step;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .instruction-list {
+            counter-reset: step;
+        }
+
+        .back-btn {
+            background: #666;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #555;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* Comments and Likes Section */
+        .comments-section {
+            margin-top: 2rem;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .likes-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .like-btn, .dislike-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .like-btn:hover {
+            border-color: #4CAF50;
+            background: #f1f8e9;
+        }
+
+        .like-btn.active {
+            border-color: #4CAF50;
+            background: #4CAF50;
+            color: white;
+        }
+
+        .dislike-btn:hover {
+            border-color: #f44336;
+            background: #ffebee;
+        }
+
+        .dislike-btn.active {
+            border-color: #f44336;
+            background: #f44336;
+            color: white;
+        }
+
+        .comment-form {
+            margin-bottom: 2rem;
+        }
+
+        .comment-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 80px;
+            transition: border-color 0.3s ease;
+        }
+
+        .comment-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .comment-submit {
+            margin-top: 1rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .comment-submit:hover {
+            transform: translateY(-2px);
+        }
+
+        .comments-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .comment-item {
+            padding: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.3s ease;
+        }
+
+        .comment-item:hover {
+            background: #f8f9fa;
+        }
+
+        .comment-item:last-child {
+            border-bottom: none;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .comment-date {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        .comment-text {
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .no-comments {
+            text-align: center;
+            color: #999;
+            padding: 2rem;
+            font-style: italic;
+        }
+
+        .login-required {
+            text-align: center;
+            padding: 2rem;
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo" onclick="location.reload()" style="cursor: pointer;">🍳 Receitas Online</div>
+            <button class="login-btn" onclick="openModal()">Login</button>
+        </nav>
+    </header>
+
+    <!-- Filter Dropdown -->
+    <div class="filter-container">
+        <div class="filter-dropdown">
+            <button class="filter-button" onclick="toggleFilter()">
+                <span id="filterLabel">Todas as Categorias</span>
+                <span class="filter-arrow" id="filterArrow">▼</span>
+            </button>
+            <div class="filter-options" id="filterOptions">
+                <div class="filter-option active" onclick="selectFilter('all', 'Todas as Categorias')">Todas as Categorias</div>
+                <div class="filter-option" onclick="selectFilter('refeição', 'Refeição')">Refeição</div>
+                <div class="filter-option" onclick="selectFilter('lanche', 'Lanche')">Lanche</div>
+                <div class="filter-option" onclick="selectFilter('bebida', 'Bebida')">Bebida</div>
+                <div class="filter-option" onclick="selectFilter('instantânea', 'Instantânea')">Instantânea</div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div id="loading" class="loading">Carregando receitas...</div>
+        
+        <div id="videoGrid" class="video-grid hidden">
+            <!-- Videos serão inseridos aqui dinamicamente -->
+        </div>
+
+        <div id="videoDetail" class="video-detail">
+            <div>
+                <button class="back-btn" onclick="backToGrid()">← Voltar</button>
+                <div class="video-player">
+                    <img id="mainVideo" class="main-video" src="" alt="Video da receita">
+                </div>
+            </div>
+            <div class="recipe-info">
+                <h2 id="recipeTitle" class="recipe-title"></h2>
+                
+                <div class="recipe-section">
+                    <h3>Descrição</h3>
+                    <p id="recipeDescription"></p>
+                </div>
+
+                <div class="recipe-section">
+                    <h3>Preço Estimado</h3>
+                    <p id="recipePrice"></p>
+                </div>
+
+                <div class="recipe-section">
+                    <h3>Categoria</h3>
+                    <p id="recipeCategory"></p>
+                </div>
+
+                <div class="recipe-section">
+                    <h3>Ingredientes</h3>
+                    <ul id="ingredientList" class="ingredient-list"></ul>
+                </div>
+
+                <div class="recipe-section">
+                    <h3>Modo de Preparo</h3>
+                    <ul id="instructionList" class="instruction-list"></ul>
+                </div>
+            </div>
+            
+            <!-- Comments Section -->
+            <div class="comments-section" id="commentsSection">
+                <h3>Comentários e Avaliações</h3>
+                
+                <!-- Login Required Message -->
+                <div id="loginRequired" class="login-required hidden">
+                    <p>🔒 Faça login para comentar e avaliar esta receita</p>
+                    <button class="comment-submit" onclick="openModal()">Fazer Login</button>
+                </div>
+                
+                <!-- Comments Content (for logged users) -->
+                <div id="commentsContent" class="hidden">
+                    <!-- Likes/Dislikes -->
+                    <div class="likes-container">
+                        <button class="like-btn" id="likeBtn" onclick="toggleLike()">
+                            👍 <span id="likeCount">0</span>
+                        </button>
+                        <button class="dislike-btn" id="dislikeBtn" onclick="toggleDislike()">
+                            👎 <span id="dislikeCount">0</span>
+                        </button>
+                        <span style="margin-left: auto; color: #666;">
+                            <span id="totalComments">0</span> comentários
+                        </span>
+                    </div>
+                    
+                    <!-- Comment Form -->
+                    <div class="comment-form">
+                        <textarea 
+                            id="commentInput" 
+                            class="comment-input" 
+                            placeholder="Deixe seu comentário sobre esta receita..."
+                        ></textarea>
+                        <button class="comment-submit" onclick="addComment()">Comentar</button>
+                    </div>
+                    
+                    <!-- Comments List -->
+                    <div class="comments-list" id="commentsList">
+                        <div class="no-comments">Nenhum comentário ainda. Seja o primeiro a comentar!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Login/Register Modal -->
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal">
+            <button class="close-modal" onclick="closeModal()">×</button>
+            
+            <div id="loginForm">
+                <h2>Login</h2>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Entrar</button>
+                </form>
+                <div class="toggle-form">
+                    Não tem conta? <a onclick="toggleForm()">Registre-se</a>
+                </div>
+            </div>
+
+            <div id="registerForm" class="hidden">
+                <h2>Registro</h2>
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label for="regName">Nome</label>
+                        <input type="text" id="regName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">Email</label>
+                        <input type="email" id="regEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPassword">Senha</label>
+                        <input type="password" id="regPassword" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Registrar</button>
+                </form>
+                <div class="toggle-form">
+                    Já tem conta? <a onclick="toggleForm()">Faça login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let recipes = [];
+        let currentFilter = 'all';
+        let currentRecipe = null;
+
+        // API endpoints
+        const API_BASE = 'http://localhost:3000/api';
+
+        // Comments and Likes data
+        let commentsData = JSON.parse(localStorage.getItem('commentsData')) || {};
+        let likesData = JSON.parse(localStorage.getItem('likesData')) || {};
+
+        // Usuários pré-cadastrados (em um app real, isso viria de uma API)
+        const baseUsers = [
+            { email: 'admin@receitas.com', password: 'admin123', name: 'Admin' },
+            { email: 'joao@email.com', password: 'senha123', name: 'João' },
+            { email: 'maria@email.com', password: 'senha123', name: 'Maria' },
+            { email: 'pedro@email.com', password: 'senha123', name: 'Pedro' },
+            { email: 'ana@email.com', password: 'senha123', name: 'Ana' }
+        ];
+
+        // Carregar usuários do localStorage ou usar os base
+        let registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || baseUsers;
+
+        // Carregar usuário logado do localStorage
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+
+        // Salvar usuários no localStorage quando houver alteração
+        function saveUsers() {
+            localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+            console.log('Usuários salvos no localStorage:', registeredUsers);
+        }
+
+        // Salvar usuário logado no localStorage
+        function saveCurrentUser() {
+            if (currentUser) {
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                console.log('Usuário logado salvo:', currentUser);
+            } else {
+                localStorage.removeItem('currentUser');
+                console.log('Usuário deslogado, removido do localStorage');
+            }
+        }
+
+        // Função para limpar usuários (debug)
+        function clearUsers() {
+            localStorage.removeItem('registeredUsers');
+            registeredUsers = [...baseUsers];
+            console.log('Usuários resetados para os base:', registeredUsers);
+        }
+
+        // Filter functions
+        function toggleFilter() {
+            const options = document.getElementById('filterOptions');
+            const arrow = document.getElementById('filterArrow');
+            
+            options.classList.toggle('open');
+            arrow.classList.toggle('open');
+        }
+
+        function selectFilter(category, label) {
+            currentFilter = category;
+            
+            // Update UI
+            document.getElementById('filterLabel').textContent = label;
+            
+            // Update active state
+            const options = document.querySelectorAll('.filter-option');
+            options.forEach(option => option.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Close dropdown
+            toggleFilter();
+            
+            // Filter recipes
+            filterRecipes();
+        }
+
+        function filterRecipes() {
+            let filteredRecipes = recipes;
+            
+            if (currentFilter !== 'all') {
+                filteredRecipes = recipes.filter(recipe => recipe.category === currentFilter);
+            }
+            
+            renderVideoGrid(filteredRecipes);
+        }
+
+        // Fechar dropdown ao clicar fora
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.filter-dropdown');
+            if (!dropdown.contains(event.target)) {
+                const options = document.getElementById('filterOptions');
+                const arrow = document.getElementById('filterArrow');
+                options.classList.remove('open');
+                arrow.classList.remove('open');
+            }
+        });
+
+        // Carregar receitas da API
+        async function loadRecipes() {
+            try {
+                const response = await fetch(`${API_BASE}/recipes`);
+                if (!response.ok) throw new Error('Erro ao carregar receitas');
+                
+                recipes = await response.json();
+                filterRecipes(); // Usar filterRecipes em vez de renderVideoGrid diretamente
+                
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('videoGrid').classList.remove('hidden');
+            } catch (error) {
+                console.error('Erro:', error);
+                document.getElementById('loading').textContent = 'Erro ao carregar receitas. Tente novamente.';
+            }
+        }
+
+        // Renderizar grid de vídeos
+        function renderVideoGrid(recipesToRender) {
+            const grid = document.getElementById('videoGrid');
+            grid.innerHTML = '';
+
+            recipesToRender.forEach(recipe => {
+                const card = document.createElement('div');
+                card.className = 'video-card';
+                card.onclick = () => showVideoDetail(recipe);
+                
+                card.innerHTML = `
+                    <img class="video-thumbnail" src="${recipe.image}" alt="${recipe.name}">
+                    <div class="video-info">
+                        <div class="video-title">${recipe.name}</div>
+                        <div class="video-description">${recipe.description}</div>
+                        <div class="video-price">R$ ${recipe.price}</div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Mostrar detalhes do vídeo
+        function showVideoDetail(recipe) {
+            currentRecipe = recipe;
+            
+            document.getElementById('videoGrid').classList.add('hidden');
+            document.getElementById('videoDetail').classList.add('active');
+            
+            // Esconder o filtro
+            document.querySelector('.filter-container').classList.add('hidden');
+
+            // Preencher informações da receita
+            document.getElementById('mainVideo').src = recipe.video;
+            document.getElementById('recipeTitle').textContent = recipe.name;
+            document.getElementById('recipeDescription').textContent = recipe.description;
+            document.getElementById('recipePrice').textContent = `R$ ${recipe.price}`;
+            document.getElementById('recipeCategory').textContent = recipe.category;
+
+            // Preencher ingredientes
+            const ingredientList = document.getElementById('ingredientList');
+            ingredientList.innerHTML = '';
+            recipe.ingredients.forEach(ingredient => {
+                const li = document.createElement('li');
+                li.textContent = ingredient;
+                ingredientList.appendChild(li);
+            });
+
+            // Preencher instruções
+            const instructionList = document.getElementById('instructionList');
+            instructionList.innerHTML = '';
+            recipe.instructions.forEach(instruction => {
+                const li = document.createElement('li');
+                li.textContent = instruction;
+                instructionList.appendChild(li);
+            });
+
+            // Carregar comentários e likes
+            loadCommentsAndLikes();
+
+            // Scroll para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Voltar para o grid
+        function backToGrid() {
+            document.getElementById('videoDetail').classList.remove('active');
+            document.getElementById('videoGrid').classList.remove('hidden');
+            
+            // Mostrar o filtro novamente
+            document.querySelector('.filter-container').classList.remove('hidden');
+        }
+
+        // Comments and Likes Functions
+        function loadCommentsAndLikes() {
+            if (!currentRecipe) return;
+
+            const recipeId = currentRecipe.id;
+            
+            // Sempre mostrar comentários (logado ou não)
+            document.getElementById('loginRequired').classList.add('hidden');
+            document.getElementById('commentsContent').classList.remove('hidden');
+
+            // Carregar likes/dislikes
+            const recipeLikes = likesData[recipeId] || { likes: 0, dislikes: 0, userLikes: [], userDislikes: [] };
+            document.getElementById('likeCount').textContent = recipeLikes.likes;
+            document.getElementById('dislikeCount').textContent = recipeLikes.dislikes;
+
+            // Verificar se usuário está logado para habilitar/desabilitar interações
+            if (currentUser) {
+                // Habilitar botões de like/dislike
+                document.getElementById('likeBtn').style.pointerEvents = 'auto';
+                document.getElementById('likeBtn').style.opacity = '1';
+                document.getElementById('dislikeBtn').style.pointerEvents = 'auto';
+                document.getElementById('dislikeBtn').style.opacity = '1';
+                
+                // Habilitar formulário de comentário
+                document.getElementById('commentInput').disabled = false;
+                document.getElementById('commentInput').style.opacity = '1';
+                document.getElementById('commentInput').style.cursor = 'text';
+                document.querySelector('.comment-submit').disabled = false;
+                document.querySelector('.comment-submit').style.opacity = '1';
+                document.querySelector('.comment-submit').style.cursor = 'pointer';
+
+                // Verificar se usuário já curtiu/descurtiu
+                if (recipeLikes.userLikes.includes(currentUser.email)) {
+                    document.getElementById('likeBtn').classList.add('active');
+                } else {
+                    document.getElementById('likeBtn').classList.remove('active');
+                }
+
+                if (recipeLikes.userDislikes.includes(currentUser.email)) {
+                    document.getElementById('dislikeBtn').classList.add('active');
+                } else {
+                    document.getElementById('dislikeBtn').classList.remove('active');
+                }
+            } else {
+                // Desabilitar botões de like/dislike mas mostrar contadores
+                document.getElementById('likeBtn').style.pointerEvents = 'none';
+                document.getElementById('likeBtn').style.opacity = '0.6';
+                document.getElementById('dislikeBtn').style.pointerEvents = 'none';
+                document.getElementById('dislikeBtn').style.opacity = '0.6';
+                
+                // Remover classes active se não estiver logado
+                document.getElementById('likeBtn').classList.remove('active');
+                document.getElementById('dislikeBtn').classList.remove('active');
+                
+                // Desabilitar formulário de comentário
+                document.getElementById('commentInput').disabled = true;
+                document.getElementById('commentInput').style.opacity = '0.6';
+                document.getElementById('commentInput').style.cursor = 'not-allowed';
+                document.getElementById('commentInput').placeholder = 'Faça login para comentar...';
+                document.querySelector('.comment-submit').disabled = true;
+                document.querySelector('.comment-submit').style.opacity = '0.6';
+                document.querySelector('.comment-submit').style.cursor = 'not-allowed';
+            }
+
+            // Carregar comentários (sempre visíveis)
+            const recipeComments = commentsData[recipeId] || [];
+            renderComments(recipeComments);
+        }
+
+        function renderComments(comments) {
+            const commentsList = document.getElementById('commentsList');
+            document.getElementById('totalComments').textContent = comments.length;
+
+            if (comments.length === 0) {
+                commentsList.innerHTML = '<div class="no-comments">Nenhum comentário ainda. Seja o primeiro a comentar!</div>';
+                return;
+            }
+
+            commentsList.innerHTML = '';
+            comments.forEach(comment => {
+                const commentDiv = document.createElement('div');
+                commentDiv.className = 'comment-item';
+                
+                const date = new Date(comment.timestamp).toLocaleDateString('pt-BR');
+                
+                commentDiv.innerHTML = `
+                    <div class="comment-header">
+                        <span class="comment-author">${comment.authorName}</span>
+                        <span class="comment-date">${date}</span>
+                    </div>
+                    <div class="comment-text">${comment.text}</div>
+                `;
+                
+                commentsList.appendChild(commentDiv);
+            });
+        }
+
+        function toggleLike() {
+            if (!currentUser) {
+                alert('Faça login para curtir esta receita!');
+                openModal();
+                return;
+            }
+            
+            if (!currentRecipe) return;
+
+            const recipeId = currentRecipe.id;
+            
+            // Inicializar dados da receita se não existir
+            if (!likesData[recipeId]) {
+                likesData[recipeId] = { likes: 0, dislikes: 0, userLikes: [], userDislikes: [] };
+            }
+
+            const recipeLikes = likesData[recipeId];
+            const userEmail = currentUser.email;
+
+            // Remover dislike se existir
+            if (recipeLikes.userDislikes.includes(userEmail)) {
+                recipeLikes.userDislikes = recipeLikes.userDislikes.filter(email => email !== userEmail);
+                recipeLikes.dislikes--;
+                document.getElementById('dislikeBtn').classList.remove('active');
+            }
+
+            // Toggle like
+            if (recipeLikes.userLikes.includes(userEmail)) {
+                // Remover like
+                recipeLikes.userLikes = recipeLikes.userLikes.filter(email => email !== userEmail);
+                recipeLikes.likes--;
+                document.getElementById('likeBtn').classList.remove('active');
+            } else {
+                // Adicionar like
+                recipeLikes.userLikes.push(userEmail);
+                recipeLikes.likes++;
+                document.getElementById('likeBtn').classList.add('active');
+            }
+
+            // Atualizar contadores
+            document.getElementById('likeCount').textContent = recipeLikes.likes;
+            document.getElementById('dislikeCount').textContent = recipeLikes.dislikes;
+
+            // Salvar no localStorage
+            localStorage.setItem('likesData', JSON.stringify(likesData));
+        }
+
+        function toggleDislike() {
+            if (!currentUser) {
+                alert('Faça login para avaliar esta receita!');
+                openModal();
+                return;
+            }
+            
+            if (!currentRecipe) return;
+
+            const recipeId = currentRecipe.id;
+            
+            // Inicializar dados da receita se não existir
+            if (!likesData[recipeId]) {
+                likesData[recipeId] = { likes: 0, dislikes: 0, userLikes: [], userDislikes: [] };
+            }
+
+            const recipeLikes = likesData[recipeId];
+            const userEmail = currentUser.email;
+
+            // Remover like se existir
+            if (recipeLikes.userLikes.includes(userEmail)) {
+                recipeLikes.userLikes = recipeLikes.userLikes.filter(email => email !== userEmail);
+                recipeLikes.likes--;
+                document.getElementById('likeBtn').classList.remove('active');
+            }
+
+            // Toggle dislike
+            if (recipeLikes.userDislikes.includes(userEmail)) {
+                // Remover dislike
+                recipeLikes.userDislikes = recipeLikes.userDislikes.filter(email => email !== userEmail);
+                recipeLikes.dislikes--;
+                document.getElementById('dislikeBtn').classList.remove('active');
+            } else {
+                // Adicionar dislike
+                recipeLikes.userDislikes.push(userEmail);
+                recipeLikes.dislikes++;
+                document.getElementById('dislikeBtn').classList.add('active');
+            }
+
+            // Atualizar contadores
+            document.getElementById('likeCount').textContent = recipeLikes.likes;
+            document.getElementById('dislikeCount').textContent = recipeLikes.dislikes;
+
+            // Salvar no localStorage
+            localStorage.setItem('likesData', JSON.stringify(likesData));
+        }
+
+        function addComment() {
+            if (!currentUser) {
+                alert('Faça login para comentar!');
+                openModal();
+                return;
+            }
+            
+            if (!currentRecipe) return;
+
+            const commentText = document.getElementById('commentInput').value.trim();
+            
+            if (!commentText) {
+                alert('Por favor, escreva um comentário.');
+                return;
+            }
+
+            const recipeId = currentRecipe.id;
+            
+            // Inicializar comentários da receita se não existir
+            if (!commentsData[recipeId]) {
+                commentsData[recipeId] = [];
+            }
+
+            // Criar novo comentário
+            const newComment = {
+                authorEmail: currentUser.email,
+                authorName: currentUser.name,
+                text: commentText,
+                timestamp: new Date().toISOString()
+            };
+
+            // Adicionar comentário
+            commentsData[recipeId].unshift(newComment); // Adiciona no início
+
+            // Limpar campo
+            document.getElementById('commentInput').value = '';
+
+            // Renderizar comentários
+            renderComments(commentsData[recipeId]);
+
+            // Salvar no localStorage
+            localStorage.setItem('commentsData', JSON.stringify(commentsData));
+
+            console.log('Comentário adicionado:', newComment);
+        }
+
+        // Modal functions
+        function openModal() {
+            document.getElementById('modalOverlay').classList.add('active');
+            // Limpar campos ao abrir
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('regName').value = '';
+            document.getElementById('regEmail').value = '';
+            document.getElementById('regPassword').value = '';
+            // Garantir que o formulário de login esteja visível
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('registerForm').classList.add('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+
+        function toggleForm() {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            
+            loginForm.classList.toggle('hidden');
+            registerForm.classList.toggle('hidden');
+        }
+
+        // Login
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            
+            console.log('=== TENTATIVA DE LOGIN ===');
+            console.log('Email digitado:', email);
+            console.log('Senha digitada:', password);
+            console.log('Usuários cadastrados:', registeredUsers);
+            
+            // Validação básica
+            if (!email || !password) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+            
+            // Verificar se o usuário existe e a senha está correta
+            const user = registeredUsers.find(u => u.email === email && u.password === password);
+            
+            console.log('Usuário encontrado:', user);
+            
+            if (user) {
+                currentUser = { email: user.email, name: user.name };
+                saveCurrentUser(); // Salvar no localStorage
+                updateLoginButton();
+                closeModal();
+                
+                // Se estiver na página de detalhes, recarregar comentários
+                if (currentRecipe) {
+                    loadCommentsAndLikes();
+                }
+                
+                // Limpar formulário
+                document.getElementById('email').value = '';
+                document.getElementById('password').value = '';
+                
+                console.log('✅ LOGIN AUTORIZADO:', currentUser);
+                alert(`Bem-vindo(a), ${user.name}!`);
+            } else {
+                alert('Email ou senha incorretos. Tente novamente.');
+                console.log('❌ LOGIN BLOQUEADO: Credenciais inválidas');
+            }
+        }
+
+        // Registro
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const password = document.getElementById('regPassword').value.trim();
+            
+            console.log('=== TENTATIVA DE REGISTRO ===');
+            console.log('Nome:', name);
+            console.log('Email:', email);
+            console.log('Senha:', password);
+            
+            // Validação de campos
+            if (!name || !email || !password) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('A senha deve ter pelo menos 6 caracteres.');
+                return;
+            }
+            
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Por favor, insira um email válido.');
+                return;
+            }
+            
+            // Verificar se o email já está cadastrado
+            const existingUser = registeredUsers.find(u => u.email === email);
+            if (existingUser) {
+                alert('Este email já está cadastrado. Tente fazer login.');
+                console.log('REGISTRO BLOQUEADO: Email já existe');
+                return;
+            }
+            
+            // Adicionar novo usuário à lista
+            const newUser = { email, name, password };
+            registeredUsers.push(newUser);
+            
+            // Salvar no localStorage
+            saveUsers();
+            
+            currentUser = { email: newUser.email, name: newUser.name };
+            saveCurrentUser(); // Salvar no localStorage
+            updateLoginButton();
+            closeModal();
+            
+            // Se estiver na página de detalhes, recarregar comentários
+            if (currentRecipe) {
+                loadCommentsAndLikes();
+            }
+            
+            // Limpar formulário
+            document.getElementById('regName').value = '';
+            document.getElementById('regEmail').value = '';
+            document.getElementById('regPassword').value = '';
+            
+            // Voltar para formulário de login
+            toggleForm();
+            
+            console.log('✅ REGISTRO AUTORIZADO:', currentUser);
+            console.log('Total de usuários:', registeredUsers.length);
+            alert(`Cadastro realizado com sucesso! Bem-vindo(a), ${name}!`);
+        }
+
+        // Atualizar botão de login
+        function updateLoginButton() {
+            const loginBtn = document.querySelector('.login-btn');
+            if (currentUser) {
+                loginBtn.textContent = currentUser.name;
+                loginBtn.onclick = () => {
+                    if (confirm('Deseja sair?')) {
+                        currentUser = null;
+                        saveCurrentUser(); // Remover do localStorage
+                        loginBtn.textContent = 'Login';
+                        loginBtn.onclick = openModal;
+                    }
+                };
+            }
+        }
+
+        // Fechar modal ao clicar fora
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            // Atualizar botão de login com usuário salvo
+            updateLoginButton();
+            
+            // Carregar receitas
+            loadRecipes();
+        });
+    </script>
+</body>
+</html>
