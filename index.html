@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receitas Online</title>
+
+    <!-- Para acelerar a criação do projeto, essa parte foi quase 100% feita por IA, exceto por ajustes insignificantes. Mas também foi a única parte, todo o resto foi feito a dedo por mim. -->
     <style>
         * {
             margin: 0;
@@ -735,6 +737,123 @@
         // API endpoints
         const API_BASE = 'http://localhost:3000/api';
 
+        // Para GitHub Pages, usaremos dados mockados diretamente no frontend
+        // Em produção, você precisará de uma API separada ou usar GitHub Actions
+
+        // Dados das receitas (mock para GitHub Pages)
+        const recipesData = [
+          {
+            "id": 1,
+            "name": "Macarrão Simples",
+            "description": "Macarrão rápido com sal",
+            "ingredients": ["macarrão", "água", "sal"],
+            "instructions": ["ferver água", "cozinhar macarrão", "escorrer e servir"],
+            "price": 8,
+            "category": "refeição",
+            "image": "./docs/assets/image/image.png",
+            "video": "./docs/assets/image/video.png"
+          },
+          {
+            "id": 2,
+            "name": "Miojo",
+            "description": "Macarrão instantâneo rápido",
+            "ingredients": ["miojo", "água", "tempero pronto"],
+            "instructions": ["ferver água", "adicionar miojo", "misturar tempero"],
+            "price": 5,
+            "category": "instantânea",
+            "image": "./docs/assets/image/image.png",
+            "video": "./docs/assets/image/video.png"
+          },
+          {
+            "id": 3,
+            "name": "Ovo Mexido",
+            "description": "Ovos mexidos simples",
+            "ingredients": ["ovo", "sal", "óleo"],
+            "instructions": ["quebrar ovos", "mexer na panela", "servir"],
+            "price": 6,
+            "category": "refeição",
+            "image": "./docs/assets/image/image.png",
+            "video": "./docs/assets/image/video.png"
+          },
+          {
+            "id": 4,
+            "name": "Sanduíche",
+            "description": "Pão com queijo e presunto",
+            "ingredients": ["pão", "queijo", "presunto"],
+            "instructions": ["montar sanduíche", "servir"],
+            "price": 7,
+            "category": "lanche",
+            "image": "./docs/assets/image/image.png",
+            "video": "./docs/assets/image/video.png"
+          },
+          {
+            "id": 5,
+            "name": "Cuscuz",
+            "description": "Cuscuz simples no vapor",
+            "ingredients": ["flocão", "água", "sal"],
+            "instructions": ["hidratar flocão", "cozinhar no vapor", "servir"],
+            "price": 4,
+            "category": "refeição",
+            "image": "./docs/assets/image/image.png",
+            "video": "./docs/assets/image/video.png"
+          },
+          {
+            "id": 6,
+            "name": "Pipoca",
+            "description": "Pipoca feita na panela",
+            "ingredients": ["milho", "óleo", "sal"],
+            "instructions": ["aquecer óleo", "estourar milho", "temperar"],
+            "price": 3,
+            "category": "lanche",
+            "image": "./docs/assets/image/image.png",
+            "video": "./docs/assets/image/video.png"
+          },
+          {
+            "id": 7,
+            "name": "Tapioca",
+            "description": "Tapioca simples",
+            "ingredients": ["goma de tapioca", "sal"],
+            "instructions": ["aquecer frigideira", "espalhar goma", "servir"],
+            "price": 6,
+            "category": "refeição",
+            "image": "./docs/assets/image/image.png",
+            "video": "./docs/assets/image/video.png"
+          },
+          {
+            "id": 8,
+            "name": "Arroz Simples",
+            "description": "Arroz branco básico",
+            "ingredients": ["arroz", "água", "sal"],
+            "instructions": ["lavar arroz", "cozinhar", "servir"],
+            "price": 5,
+            "category": "refeição",
+            "image": "./docs/assets/image/image.png",
+            "video": "./docs/assets/image/video.png"
+          },
+          {
+            "id": 9,
+            "name": "Pão com Ovo",
+            "description": "Sanduíche simples com ovo frito",
+            "ingredients": ["pão", "ovo", "sal"],
+            "instructions": ["fritar ovo", "colocar no pão", "servir"],
+            "price": 6,
+            "category": "lanche",
+            "image": "./docs/assets/image/image.png",
+            "video": "./docs/assets/image/video.png"
+          },
+          {
+            "id": 10,
+            "name": "Batata Frita",
+            "description": "Batata frita crocante",
+            "ingredients": ["batata", "óleo", "sal"],
+            "instructions": ["cortar batata", "fritar", "temperar"],
+            "price": 7,
+            "category": "lanche",
+            "image": "./docs/assets/image/image.png",
+            "video": "./docs/assets/image/video.png"
+          }
+        ];
+
         // Comments and Likes data
         let commentsData = JSON.parse(localStorage.getItem('commentsData')) || {};
         let likesData = JSON.parse(localStorage.getItem('likesData')) || {};
@@ -829,17 +948,37 @@
         // Carregar receitas da API
         async function loadRecipes() {
             try {
-                const response = await fetch(`${API_BASE}/recipes`);
-                if (!response.ok) throw new Error('Erro ao carregar receitas');
+                // Para GitHub Pages, usar dados mockados
+                // Para desenvolvimento local, usar API
+                if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                    const response = await fetch(`${API_BASE}/recipes`);
+                    if (!response.ok) throw new Error('Erro ao carregar receitas');
+                    recipes = await response.json();
+                } else {
+                    // GitHub Pages - usar dados mockados com caminhos relativos
+                    recipes = recipesData;
+                }
                 
-                recipes = await response.json();
                 filterRecipes(); // Usar filterRecipes em vez de renderVideoGrid diretamente
                 
                 document.getElementById('loading').classList.add('hidden');
                 document.getElementById('videoGrid').classList.remove('hidden');
             } catch (error) {
                 console.error('Erro:', error);
-                document.getElementById('loading').textContent = 'Erro ao carregar receitas. Tente novamente.';
+                // Fallback para dados mockados
+                // Ajustar caminhos das imagens para desenvolvimento local
+                const adjustedRecipes = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+                    ? recipesData.map(recipe => ({
+                        ...recipe,
+                        image: recipe.image.replace('./docs/', '/'),
+                        video: recipe.video.replace('./docs/', '/')
+                    }))
+                    : recipesData;
+                    
+                recipes = adjustedRecipes;
+                filterRecipes();
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('videoGrid').classList.remove('hidden');
             }
         }
 

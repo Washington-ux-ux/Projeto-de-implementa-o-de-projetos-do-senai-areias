@@ -8,12 +8,12 @@ function createApp() {
     app.use(json())
     app.use("/api", router)
     
-    // Servir arquivos estáticos da pasta public
-    app.use(express.static(path.join(process.cwd(), 'public')))
+    // Servir arquivos estáticos da pasta docs
+    app.use(express.static(path.join(process.cwd(), 'docs')))
     
     // Rota principal para servir o index.html
     app.get('/', (req: Request, res: Response) => {
-        res.sendFile(path.join(process.cwd(), 'public', 'index.html'))
+        res.sendFile(path.join(process.cwd(), 'index.html'))
     })
 
     
