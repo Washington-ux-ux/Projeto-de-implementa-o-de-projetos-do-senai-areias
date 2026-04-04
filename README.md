@@ -92,7 +92,7 @@ Plataforma web completa de receitas com foco em:
 git clone https://github.com/Washington-ux-ux/Projeto-de-implementa-o-de-projetos-do-senai-areias.git
 
 # Entrar na pasta
-cd "implemento sofia"
+cd Projeto-de-implementa-o-de-projetos-do-senai-areias
 
 # Instalar dependências
 npm install
