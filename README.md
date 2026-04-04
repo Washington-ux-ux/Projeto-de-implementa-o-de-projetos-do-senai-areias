@@ -3,7 +3,7 @@
 **Projeto SENAI — Solução para Alimentação Acessível**
 
 ## 👨‍🎓 **Aluno**: Washington Lyniker
-## link do Github Pages: https://washington-ux-ux.github.io/Projeto-de-implementa-o-de-projetos-do-senai-areias/
+#### link do Github Pages: https://washington-ux-ux.github.io/Projeto-de-implementa-o-de-projetos-do-senai-areias/
 
 ---
 
