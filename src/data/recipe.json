@@ -7,7 +7,7 @@
     "instructions": ["ferver água", "cozinhar macarrão", "escorrer e servir"],
     "price": 8,
     "category": "refeição",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/01.jpg",
     "video": "/assets/image/video.png"
   },
   {
@@ -18,7 +18,7 @@
     "instructions": ["ferver água", "adicionar miojo", "misturar tempero"],
     "price": 5,
     "category": "instantânea",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/02.jpeg",
     "video": "/assets/image/video.png"
   },
   {
@@ -29,7 +29,7 @@
     "instructions": ["quebrar ovos", "mexer na panela", "servir"],
     "price": 6,
     "category": "refeição",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/03.jpg",
     "video": "/assets/image/video.png"
   },
   {
@@ -40,7 +40,7 @@
     "instructions": ["montar sanduíche", "servir"],
     "price": 7,
     "category": "lanche",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/04.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -51,7 +51,7 @@
     "instructions": ["hidratar flocão", "cozinhar no vapor", "servir"],
     "price": 4,
     "category": "refeição",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/05.webp",
     "video": "/assets/image/video.png"
   },
   {
@@ -62,7 +62,7 @@
     "instructions": ["aquecer óleo", "estourar milho", "temperar"],
     "price": 3,
     "category": "lanche",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/06.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -73,7 +73,7 @@
     "instructions": ["aquecer frigideira", "espalhar goma", "servir"],
     "price": 6,
     "category": "refeição",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/07.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -84,7 +84,7 @@
     "instructions": ["lavar arroz", "cozinhar", "servir"],
     "price": 5,
     "category": "refeição",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/08.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -95,7 +95,7 @@
     "instructions": ["fritar ovo", "colocar no pão", "servir"],
     "price": 6,
     "category": "lanche",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/09.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -106,7 +106,7 @@
     "instructions": ["cortar batata", "fritar", "temperar"],
     "price": 7,
     "category": "lanche",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/10.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -117,7 +117,7 @@
     "instructions": ["montar pão", "levar à frigideira", "servir"],
     "price": 6,
     "category": "lanche",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/11.avif",
     "video": "/assets/image/video.png"
   },
   {
@@ -128,7 +128,7 @@
     "instructions": ["preparar café", "misturar leite", "adoçar"],
     "price": 4,
     "category": "bebida",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/12.jpg",
     "video": "/assets/image/video.png"
   },
   {
@@ -139,7 +139,7 @@
     "instructions": ["bater tudo no liquidificador", "servir"],
     "price": 5,
     "category": "bebida",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/13.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -150,7 +150,7 @@
     "instructions": ["passar manteiga", "servir"],
     "price": 3,
     "category": "lanche",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/14.jpg",
     "video": "/assets/image/video.png"
   },
   {
@@ -161,7 +161,7 @@
     "instructions": ["cozinhar salsicha", "montar no pão", "servir"],
     "price": 8,
     "category": "lanche",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/15.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -172,7 +172,7 @@
     "instructions": ["derreter manteiga", "misturar farinha", "temperar e servir"],
     "price": 4,
     "category": "refeição",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/16.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -183,7 +183,7 @@
     "instructions": ["cortar banana", "fritar na manteiga", "servir"],
     "price": 4,
     "category": "lanche",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/17.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -194,7 +194,7 @@
     "instructions": ["bater ovos", "fritar na frigideira", "servir"],
     "price": 6,
     "category": "refeição",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/18.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -205,7 +205,7 @@
     "instructions": ["preparar arroz", "fritar ovo", "misturar e servir"],
     "price": 7,
     "category": "refeição",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/19.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -216,7 +216,7 @@
     "instructions": ["misturar ingredientes", "cozinhar até engrossar", "servir"],
     "price": 5,
     "category": "bebida",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/20.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -227,7 +227,7 @@
     "instructions": ["passar manteiga no pão", "servir"],
     "price": 3,
     "category": "lanche",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/21.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -238,7 +238,7 @@
     "instructions": ["misturar tudo", "servir"],
     "price": 4,
     "category": "bebida",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/22.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -249,7 +249,7 @@
     "instructions": ["preparar cuscuz", "fritar ovo", "servir juntos"],
     "price": 6,
     "category": "refeição",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/23.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -260,7 +260,7 @@
     "instructions": ["descascar batata", "cozinhar", "temperar e servir"],
     "price": 4,
     "category": "refeição",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/24.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -271,7 +271,7 @@
     "instructions": ["espremer laranja", "misturar água e açúcar", "servir"],
     "price": 5,
     "category": "bebida",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/25.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -282,7 +282,7 @@
     "instructions": ["cozinhar macarrão", "fazer ovo mexido", "misturar e servir"],
     "price": 7,
     "category": "refeição",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/26.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -293,7 +293,7 @@
     "instructions": ["colocar queijo no pão", "servir"],
     "price": 5,
     "category": "lanche",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/27.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -304,7 +304,7 @@
     "instructions": ["cozinhar arroz", "cozinhar salsicha", "misturar e servir"],
     "price": 8,
     "category": "refeição",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/28.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -315,7 +315,7 @@
     "instructions": ["preparar café", "adoçar", "servir"],
     "price": 3,
     "category": "bebida",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/29.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -326,7 +326,7 @@
     "instructions": ["espremer limão", "misturar com água e açúcar", "servir"],
     "price": 3,
     "category": "bebida",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/30.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -337,7 +337,7 @@
     "instructions": ["servir bolacha", "acompanhar com leite"],
     "price": 4,
     "category": "lanche",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/31.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -348,7 +348,7 @@
     "instructions": ["cozinhar ovo", "descascar", "temperar e servir"],
     "price": 3,
     "category": "refeição",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/32.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -359,7 +359,7 @@
     "instructions": ["preparar tapioca", "passar manteiga", "servir"],
     "price": 5,
     "category": "lanche",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/33.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -370,7 +370,7 @@
     "instructions": ["cozinhar arroz", "cozinhar feijão", "servir juntos"],
     "price": 9,
     "category": "refeição",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/34.jfif",
     "video": "/assets/image/video.png"
   },
   {
@@ -381,7 +381,7 @@
     "instructions": ["cortar banana", "adicionar açúcar", "servir"],
     "price": 3,
     "category": "lanche",
-    "image": "/assets/image/image.png",
+    "image": "/assets/image/35.jfif",
     "video": "/assets/image/video.png"
   }
 ]
