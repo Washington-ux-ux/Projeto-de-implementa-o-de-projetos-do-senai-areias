@@ -119,8 +119,6 @@ implemento sofia/
 ├── docs/                   # Assets para GitHub Pages
 │   └── assets/
 │       └── image/
-│           ├── image.png   # Imagens das receitas
-│           └── video.png   # Vídeos das receitas
 ├── src/                    # Código backend
 │   ├── controllers/        # Controladores API
 │   │   └── recipe-controller.ts
