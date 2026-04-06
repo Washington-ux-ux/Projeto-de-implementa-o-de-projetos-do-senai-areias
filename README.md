@@ -3,6 +3,7 @@
 **Projeto SENAI — Solução para Alimentação Acessível**
 
 ## 👨‍🎓 **Aluno**: Washington Lyniker
+#### link do Github Pages: https://washington-ux-ux.github.io/Projeto-de-implementa-o-de-projetos-do-senai-areias/
 
 ---
 
@@ -92,7 +93,7 @@ Plataforma web completa de receitas com foco em:
 git clone https://github.com/Washington-ux-ux/Projeto-de-implementa-o-de-projetos-do-senai-areias.git
 
 # Entrar na pasta
-cd "implemento sofia"
+cd Projeto-de-implementa-o-de-projetos-do-senai-areias
 
 # Instalar dependências
 npm install
